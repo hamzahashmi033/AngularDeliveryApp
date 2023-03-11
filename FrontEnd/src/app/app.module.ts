@@ -8,6 +8,8 @@ import { AppComponent } from './app.component';
 import { HeaderComponent } from './Components/Layout/header/header.component';
 import { HomeComponent } from './Components/Pages/home/home.component';
 import { SearchComponent } from './Components/Layout/search/search.component';
+import { TagsComponent } from './Components/Layout/tags/tags.component';
+import { FoodDetailsComponent } from './Components/Pages/food-details/food-details.component';
 
 
 @NgModule({
@@ -15,7 +17,9 @@ import { SearchComponent } from './Components/Layout/search/search.component';
     AppComponent,
     HeaderComponent,
     HomeComponent,
-    SearchComponent
+    SearchComponent,
+    TagsComponent,
+    FoodDetailsComponent
   ],
   imports: [
     BrowserModule,
