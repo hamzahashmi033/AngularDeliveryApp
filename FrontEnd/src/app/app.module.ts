@@ -10,6 +10,9 @@ import { HomeComponent } from './Components/Pages/home/home.component';
 import { SearchComponent } from './Components/Layout/search/search.component';
 import { TagsComponent } from './Components/Layout/tags/tags.component';
 import { FoodDetailsComponent } from './Components/Pages/food-details/food-details.component';
+import { CartPageComponent } from './Components/Pages/cart-page/cart-page.component';
+import { TitleComponent } from './Components/Layout/title/title.component';
+import { NotfoundcomponentComponent } from './Components/Layout/notfoundcomponent/notfoundcomponent.component';
 
 
 @NgModule({
@@ -19,7 +22,10 @@ import { FoodDetailsComponent } from './Components/Pages/food-details/food-detai
     HomeComponent,
     SearchComponent,
     TagsComponent,
-    FoodDetailsComponent
+    FoodDetailsComponent,
+    CartPageComponent,
+    TitleComponent,
+    NotfoundcomponentComponent
   ],
   imports: [
     BrowserModule,
