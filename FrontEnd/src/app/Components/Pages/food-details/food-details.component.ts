@@ -10,11 +10,15 @@ import { FoodService } from 'src/app/Services/food.service';
   styleUrls: ['./food-details.component.css']
 })
 export class FoodDetailsComponent {
-  food:Food | undefined
+  food!:Food 
   constructor(activatedRoutes:ActivatedRoute,FoodService:FoodService,private cartService:CartService,private Router:Router){
     activatedRoutes.params.subscribe((params)=>{
       if(params.id){
-        this.food = FoodService.getFoodById(params.id)
+        FoodService.getFoodById(params.id).subscribe((result)=>{
+          if(result){
+           this.food = result
+          }
+        })
       }
     })
   }

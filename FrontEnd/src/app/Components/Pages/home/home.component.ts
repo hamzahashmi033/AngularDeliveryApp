@@ -13,11 +13,17 @@ export class HomeComponent {
   constructor(private foodService:FoodService,activatedRoutes:ActivatedRoute){
     activatedRoutes.params.subscribe((params)=>{
       if(params.searchTerm){
-        this.foods = this.foodService.getFoodBySearchTerm(params.searchTerm)
+        this.foodService.getFoodBySearchTerm(params.searchTerm).subscribe((result)=>{
+          this.foods=result 
+        })
       }else if(params.tag){
-        this.foods = this.foodService.getTagsByTagName(params.tag)
+         this.foodService.getTagsByTagName(params.tag).subscribe((result)=>{
+          this.foods= result 
+        })
       }else{
-        this.foods = foodService.getAllFood()
+       foodService.getAllFood().subscribe((result)=>{
+         this.foods=result 
+        })
       }
     })
   }
