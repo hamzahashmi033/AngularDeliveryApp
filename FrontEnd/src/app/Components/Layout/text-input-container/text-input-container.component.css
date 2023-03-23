@@ -18,7 +18,7 @@ input {
   border-width: 2.9px;
   }
   
-  input-validation{
+  .input-validation{
   display: flex;
   justify-content: center;
   align-items: center;
