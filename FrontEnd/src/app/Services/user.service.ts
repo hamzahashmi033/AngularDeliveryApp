@@ -14,7 +14,7 @@ export class UserService {
     this.userObservable = this.userSubject.asObservable()
    }
    login(UserLogin:IUserlogin):Observable<User>{
-    return this.http.post<User>("http://localhost:5000/api/user/login",UserLogin).pipe(
+    return this.http.post<User>("http://localhost:5000/api/v1/login",UserLogin).pipe(
       tap({
         next:(user)=>{
           this.setUserToLocalStorage(user)

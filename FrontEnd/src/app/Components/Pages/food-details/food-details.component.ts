@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { Food } from 'src/app/DataTypes/Models/Food';
 import { CartService } from 'src/app/Services/cart.service';
 import { FoodService } from 'src/app/Services/food.service';
@@ -11,10 +12,14 @@ import { FoodService } from 'src/app/Services/food.service';
 })
 export class FoodDetailsComponent {
   food!:Food 
-  constructor(activatedRoutes:ActivatedRoute,FoodService:FoodService,private cartService:CartService,private Router:Router){
-    activatedRoutes.params.subscribe((params)=>{
+  message:string | undefined
+  constructor(private activatedRoutes:ActivatedRoute,private FoodService:FoodService,private cartService:CartService,private Router:Router,private toastrService:ToastrService){
+      this.singleFood()
+  }
+  singleFood(){
+    this.activatedRoutes.params.subscribe((params)=>{
       if(params.id){
-        FoodService.getFoodById(params.id).subscribe((result)=>{
+        this.FoodService.getFoodById(params.id).subscribe((result)=>{
           if(result){
            this.food = result
           }
@@ -28,5 +33,14 @@ export class FoodDetailsComponent {
       this.Router.navigate(["cart-page"])
       
     }
+  }
+  addedTofavorites(id:string){
+    this.FoodService.addFoodToFavorites(id).subscribe((result)=>{
+      if(result){
+        this.toastrService.success(result.message)
+        this.singleFood()
+      }
+      
+    })
   }
 }

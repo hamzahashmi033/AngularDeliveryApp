@@ -11,7 +11,7 @@
         <span class="name">
           {{food.name}}
         </span>
-        <span class="favorite {{food.favorite? '': 'not'}}">❤</span>
+        <span class="favorite {{food.favorite? '': 'not'}}"><button (click)="addedTofavorites(food.id)">❤</button></span>
       </div>
       <div class="rating">
         <star-rating
