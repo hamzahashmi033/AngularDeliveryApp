@@ -52,7 +52,9 @@ export class CartService {
     localStorage.setItem('Cart', cartJson);
     this.cartSubject.next(this.cart);
   }
-
+  public get getcart(){
+    return this.cartSubject.value
+   }
   private getCartFromLocalStorage(): Cart {
     const cartJson = localStorage.getItem('Cart');
     return cartJson ? JSON.parse(cartJson) : new Cart();

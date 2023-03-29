@@ -100,3 +100,9 @@ right: 1rem;
 height: 100%;
 width: 12rem;
 }
+.linkArea{
+  margin-left: 10px;
+  font-size: 15px;
+  color: black;
+  text-align: center;
+}

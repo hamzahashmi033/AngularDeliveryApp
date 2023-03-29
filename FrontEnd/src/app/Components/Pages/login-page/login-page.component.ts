@@ -20,6 +20,8 @@ export class LoginPageComponent implements OnInit {
       password: ['', [Validators.minLength(8), Validators.required]]
     })
     this.returnUrl = this.activatedRoute.snapshot.queryParams.returnUrl;
+  
+    
   }
   get fc() {
     return this.loginForm.controls

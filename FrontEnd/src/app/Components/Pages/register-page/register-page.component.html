@@ -1,0 +1,65 @@
+<div class="container">
+    <div class="details">
+      <app-title title="Register" class="title"></app-title>
+      <form [formGroup]="registerForm" (ngSubmit)="submit()">
+        <div class="input-container">
+            <label>Name</label>
+            <div>
+              <input type="text" placeholder="Name" formControlName="name"/>
+            </div>
+            <div class="error-list" *ngIf="fc.name.errors && isSubmitted">
+              <div *ngIf="fc.name.errors.minlength">Should be greater than 5</div>
+              <div *ngIf="fc.name.errors.required">Should not be empty</div>
+            </div>
+          </div>
+        <div class="input-container">
+          <label>Email</label>
+          <div>
+            <input type="email" placeholder="Email" formControlName="email"/>
+          </div>
+          <div class="error-list" *ngIf="fc.email.errors && isSubmitted">
+            <div *ngIf="fc.email.errors.required">Should not be empty</div>
+            <div *ngIf="fc.email.errors.email">Email is not correct</div>
+          </div>
+        </div>
+        <div class="input-container">
+          <label>Password</label>
+          <div>
+            <input type="password" placeholder="Password"
+            formControlName="password"/>
+          </div>
+          <div class="error-list" *ngIf="fc.password.errors && isSubmitted">
+            <div *ngIf="fc.password.errors.required">Should not be empty</div>
+          </div>
+        </div>
+        <div class="input-container">
+            <label>Confirm Password</label>
+            <div>
+              <input type="password" placeholder="Password"
+              formControlName="confirmPassword"/>
+            </div>
+            <div class="error-list" *ngIf="fc.confirmPassword.errors && isSubmitted">
+              <div *ngIf="fc.confirmPassword.errors.required">Should not be empty</div>
+              <div *ngIf="fc.confirmPassword.errors.notMatch">Not Matched!</div>
+            </div>
+          </div>
+          <div class="input-container">
+            <label>Address</label>
+            <div>
+              <input type="text" placeholder="Address"
+              formControlName="address"/>
+            </div>
+            <div class="error-list" *ngIf="fc.address.errors && isSubmitted">
+              <div *ngIf="fc.address.errors.required">Should not be empty</div>
+            </div>
+          </div>
+        <div class="button">
+          <button type="submit">Singup</button>
+        </div>
+        <div class="linkArea">
+          Don't have an account ? <a routerLink="/login-page">Lgin User</a>
+        </div>
+      </form>
+    </div>
+  </div>
+  

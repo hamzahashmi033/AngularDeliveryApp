@@ -13,7 +13,7 @@ import { FoodDetailsComponent } from './Components/Pages/food-details/food-detai
 import { CartPageComponent } from './Components/Pages/cart-page/cart-page.component';
 import { TitleComponent } from './Components/Layout/title/title.component';
 import { NotfoundcomponentComponent } from './Components/Layout/notfoundcomponent/notfoundcomponent.component';
-import {HttpClientModule} from '@angular/common/http';
+import {HttpClientModule, HTTP_INTERCEPTORS} from '@angular/common/http';
 import { LoginPageComponent } from './Components/Pages/login-page/login-page.component';
 import { ReactiveFormsModule} from '@angular/forms';
 import { ToastrModule } from 'ngx-toastr';
@@ -21,6 +21,12 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { InputContainerComponent } from './Components/Layout/input-container/input-container.component';
 import { InputValidationContainerComponent } from './Components/Layout/input-validation-container/input-validation-container.component';
 import { TextInputContainerComponent } from './Components/Layout/text-input-container/text-input-container.component';
+import { RegisterPageComponent } from './Components/Pages/register-page/register-page.component';
+import { LoaderComponent } from './Components/Layout/loader/loader.component';
+import { LoadingInterceptor } from './loading.interceptor';
+import { OrderItemListComponent } from './Components/order-item-list/order-item-list.component';
+import { CheckoutPageComponent } from './Components/Pages/checkout-page/checkout-page.component';
+import { MapComponent } from './Components/Layout/map/map.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -35,7 +41,12 @@ import { TextInputContainerComponent } from './Components/Layout/text-input-cont
     LoginPageComponent,
     InputContainerComponent,
     InputValidationContainerComponent,
-    TextInputContainerComponent
+    TextInputContainerComponent,
+    RegisterPageComponent,
+    LoaderComponent,
+    OrderItemListComponent,
+    CheckoutPageComponent,
+    MapComponent
   ],
   imports: [
     BrowserModule,
@@ -52,7 +63,9 @@ import { TextInputContainerComponent } from './Components/Layout/text-input-cont
     })
     
   ],
-  providers: [],
+  providers: [{
+    provide:HTTP_INTERCEPTORS,useClass:LoadingInterceptor,multi:true
+  }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
