@@ -24,9 +24,11 @@ import { TextInputContainerComponent } from './Components/Layout/text-input-cont
 import { RegisterPageComponent } from './Components/Pages/register-page/register-page.component';
 import { LoaderComponent } from './Components/Layout/loader/loader.component';
 import { LoadingInterceptor } from './loading.interceptor';
-import { OrderItemListComponent } from './Components/order-item-list/order-item-list.component';
+import { OrderItemListComponent } from './Components/Layout/order-item-list/order-item-list.component';
 import { CheckoutPageComponent } from './Components/Pages/checkout-page/checkout-page.component';
 import { MapComponent } from './Components/Layout/map/map.component';
+import { AuthInterceptor } from './auth.interceptor';
+import { PaymentComponent } from './Components/Pages/payment/payment.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -46,7 +48,8 @@ import { MapComponent } from './Components/Layout/map/map.component';
     LoaderComponent,
     OrderItemListComponent,
     CheckoutPageComponent,
-    MapComponent
+    MapComponent,
+    PaymentComponent
   ],
   imports: [
     BrowserModule,
@@ -63,9 +66,10 @@ import { MapComponent } from './Components/Layout/map/map.component';
     })
     
   ],
-  providers: [{
-    provide:HTTP_INTERCEPTORS,useClass:LoadingInterceptor,multi:true
-  }],
+  providers: [
+    {provide:HTTP_INTERCEPTORS,useClass:AuthInterceptor,multi:true},
+    {provide:HTTP_INTERCEPTORS,useClass:LoadingInterceptor,multi:true}
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

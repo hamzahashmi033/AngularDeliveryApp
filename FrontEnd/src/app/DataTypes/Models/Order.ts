@@ -9,6 +9,6 @@ export class Order{
     address!:string;
     pamentId!:string;
     createdAt!:string;
-    addressLatlng!:LatLng;
+    addressLatLng?:LatLng;
     status!:string;
 }

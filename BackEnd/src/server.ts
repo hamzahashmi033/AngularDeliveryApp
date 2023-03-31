@@ -21,8 +21,10 @@ connectDB()
   // importing routes 
   import FoodRoutes from "./routes/food.routes"
   import UserRoutes from "./routes/user.routes"
+  import OrderRoutes from "./routes/order.routes"
   app.use("/api/v1",FoodRoutes)
   app.use("/api/v1",UserRoutes)
+  app.use("/api/v1",OrderRoutes)
 
 app.listen(5000,()=>{
     console.log("Server is running on Port "+5000);
