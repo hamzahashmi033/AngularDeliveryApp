@@ -29,6 +29,9 @@ import { CheckoutPageComponent } from './Components/Pages/checkout-page/checkout
 import { MapComponent } from './Components/Layout/map/map.component';
 import { AuthInterceptor } from './auth.interceptor';
 import { PaymentComponent } from './Components/Pages/payment/payment.component';
+import { PaypalButtonsComponent } from './Components/Layout/paypal-buttons/paypal-buttons.component';
+import { NgxPayPalModule } from 'ngx-paypal';
+import { TrackOrderComponent } from './Components/Pages/track-order/track-order.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -49,7 +52,9 @@ import { PaymentComponent } from './Components/Pages/payment/payment.component';
     OrderItemListComponent,
     CheckoutPageComponent,
     MapComponent,
-    PaymentComponent
+    PaymentComponent,
+    PaypalButtonsComponent,
+    TrackOrderComponent
   ],
   imports: [
     BrowserModule,
@@ -63,7 +68,8 @@ import { PaymentComponent } from './Components/Pages/payment/payment.component';
       timeOut:3000,
       positionClass:'toast-top-center',
       newestOnTop:false
-    })
+    }),
+    NgxPayPalModule
     
   ],
   providers: [

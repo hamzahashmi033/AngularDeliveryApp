@@ -1,4 +1,4 @@
-import { Component, ElementRef, OnInit, ViewChild,Input } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild,Input,OnChanges } from '@angular/core';
 import { icon, LatLng, LatLngExpression, LatLngTuple, LeafletMouseEvent, map, Map, marker, Marker, tileLayer } from 'leaflet';
 import { Order } from 'src/app/DataTypes/Models/Order';
 import { LocationService } from 'src/app/Services/location.service';
@@ -8,9 +8,11 @@ import { LocationService } from 'src/app/Services/location.service';
   templateUrl: './map.component.html',
   styleUrls: ['./map.component.css']
 })
-export class MapComponent implements OnInit {
+export class MapComponent implements OnChanges {
   @Input()
   order!:Order;
+  @Input()
+  readonly = false
   @ViewChild('map', { static: true })
   mapRef!: ElementRef
   map!: Map
@@ -24,8 +26,12 @@ export class MapComponent implements OnInit {
   });
   currentMarker!:Marker
   constructor(private locationService:LocationService){}
-  ngOnInit() { 
+  ngOnChanges() { 
+    if(!this.order) return;
     this.initializeMap() 
+    if(this.readonly === true && this.addressLatlng){
+      this.showLocationOnReadOnlyMode()  
+    }
   }
   initializeMap() {
     if (this.map) return;
@@ -58,12 +64,28 @@ export class MapComponent implements OnInit {
       this.addressLatLng = this.currentMarker.getLatLng();
     })
   }
+  showLocationOnReadOnlyMode(){
+    let m = this.map
+    this.setMarker(this.addressLatlng)
+    m.setView(this.addressLatlng,this.MARKER_ZOOM_LEVEL)
+    m.dragging.disable()
+    m.touchZoom.disable()
+    m.doubleClickZoom.disable();
+    m.scrollWheelZoom.disable();
+    m.boxZoom.disable();
+    m.keyboard.disable();
+    m.off('click');
+    m.tap?.disable();
+    this.currentMarker.dragging?.disable();
+  }
   set addressLatLng(latlng: LatLng){
+    if(!latlng.lat.toFixed) return;
     latlng.lat = parseFloat(latlng.lat.toFixed(8));
     latlng.lng = parseFloat(latlng.lng.toFixed(8));
     this.order.addressLatLng = latlng;
-    console.log(this.order.addressLatLng);
-    
+  }
+  get addressLatlng(){
+    return this.order.addressLatLng!
   }
 }
 

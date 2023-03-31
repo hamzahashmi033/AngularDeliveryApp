@@ -49,7 +49,7 @@ export class CheckoutPageComponent {
     this.orderService.createOrder(this.order).subscribe({
       next:(result)=>{
         this.router.navigate(["/payment-page"]);
-        console.log(result)
+       
       },error:(errorResponse)=>{
         this.toastrService.error(errorResponse.error,"Cart")
       }

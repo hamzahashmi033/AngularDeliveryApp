@@ -8,6 +8,7 @@ import { HomeComponent } from './Components/Pages/home/home.component';
 import { LoginPageComponent } from './Components/Pages/login-page/login-page.component';
 import { PaymentComponent } from './Components/Pages/payment/payment.component';
 import { RegisterPageComponent } from './Components/Pages/register-page/register-page.component';
+import { TrackOrderComponent } from './Components/Pages/track-order/track-order.component';
 const routes: Routes = [
   {
     path:"",
@@ -45,7 +46,12 @@ const routes: Routes = [
   },
   {
     path:"payment-page",
-    component:PaymentComponent
+    component:PaymentComponent,
+    canActivate:[AuthGuard]
+  },
+  {
+    path:"track/:orderId",
+    component:TrackOrderComponent
   }
 ];
 
