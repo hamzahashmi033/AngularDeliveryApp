@@ -36,3 +36,12 @@ export const pay = expressAsyncHandler(async (req:any,res:any)=>{
    res.send(order._id)
  }
 })
+export const trackOrder = expressAsyncHandler(async(req:any,res:any)=>{
+  const {orderId} = req.params
+  const order = await OrderModel.findById(orderId)
+  if(!order){
+    res.status(404).send("Order not found")
+    return
+  }
+  res.send(order)
+})

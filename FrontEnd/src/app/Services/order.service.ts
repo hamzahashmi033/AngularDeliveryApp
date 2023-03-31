@@ -18,4 +18,7 @@ export class OrderService {
   pay(order:Order):Observable<string>{
     return this.http.post<string>("http://localhost:5000/api/v1/pay",order)
   }
+  trackOrder(orderId:any):Observable<Order>{
+    return this.http.get<Order>(`http://localhost:5000/api/v1/track/${orderId}`)
+  }
 }

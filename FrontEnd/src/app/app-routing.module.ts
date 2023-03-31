@@ -9,6 +9,7 @@ import { LoginPageComponent } from './Components/Pages/login-page/login-page.com
 import { PaymentComponent } from './Components/Pages/payment/payment.component';
 import { RegisterPageComponent } from './Components/Pages/register-page/register-page.component';
 import { TrackOrderComponent } from './Components/Pages/track-order/track-order.component';
+import { LoginguardGuard } from './auth/loginguard.guard';
 const routes: Routes = [
   {
     path:"",
@@ -33,7 +34,8 @@ const routes: Routes = [
   },
   {
     path:"login-page",
-    component:LoginPageComponent
+    component:LoginPageComponent,
+    canActivate:[LoginguardGuard]
   },
   {
     path:"register-page",
@@ -51,7 +53,8 @@ const routes: Routes = [
   },
   {
     path:"track/:orderId",
-    component:TrackOrderComponent
+    component:TrackOrderComponent,
+    canActivate:[AuthGuard]
   }
 ];
 
